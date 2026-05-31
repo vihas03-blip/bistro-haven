@@ -58,31 +58,30 @@
                 <div class="booking-tab" id="tabTracker">
                     <i class="fa-solid fa-location-crosshairs"></i> Insta-Delivery Tracker
                 </div>
-            </div>
-            <form class="booking-form" id="bookingForm" onsubmit="handleReserve(event)">
-                <div class="form-group">
-                    <label>Guests</label>
-                    <select required>
-                        <option value="2">2 Guests</option>
-                        <option value="4">4 Guests</option>
-                        <option value="6">6 Guests</option>
-                        <option value="8">8+ Guests</option>
-                    </select>
+                </div>
+                <form class="booking-form" id="bookingForm" onsubmit="handleReserve(event)">
+                    <div class="form-group">
+                        <label>Guests</label>
+                        <select id="guestsInput" required>
+                            <option value="2">2 Guests</option>
+                            <option value="4">4 Guests</option>
+                            <option value="6">6 Guests</option>
+                            <option value="8">8+ Guests</option>
+                        </select>
                 </div>
                 <div class="form-group">
                     <label>When</label>
-                    <input type="date" value="2026-05-26" required>
+                    <input type="date" id="dateInput" value="2026-05-26" required>
                 </div>
                 <div class="form-group">
                     <label>Time</label>
-                    <select required>
-                        <option value="19:00">7:00 PM</option>
-                        <option value="20:00">8:00 PM</option>
-                        <option value="21:00">9:00 PM</option>
+                    <select id="timeInput" required>
+                    <option value="7:00 PM">7:00 PM</option>
+                    <option value="8:00 PM">8:00 PM</option>
+                    <option value="9:00 PM">9:00 PM</option>
                     </select>
                 </div>
-                <button type="submit" class="book-btn">
-                    Book now <i class="fa-solid fa-magnifying-glass"></i>
+                <button type="submit" class="book-btn"> Book now <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
             </form>
         </div>

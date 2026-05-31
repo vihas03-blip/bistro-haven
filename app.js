@@ -186,16 +186,15 @@ function simulateTracking() {
 async function handleReserve(e) {
     e.preventDefault();
     
-    // Grabbing data from your form input elements
     const reservationPayload = {
         guests: Number(document.getElementById('guestsInput')?.value) || 2, 
-        date: document.getElementById('dateInput')?.value || "Today",
+        date: document.getElementById('dateInput')?.value || "2026-05-26",
         time: document.getElementById('timeInput')?.value || "7:00 PM"
     };
 
     try {
-        // Updated to send reservation logs straight to your live cloud server!
-        const response = await fetch('https://bistro-haven.onrender.com/api/reserve', {
+        // Changed to localized relative router root path mapping
+        const response = await fetch('/api/reserve', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(reservationPayload)
@@ -204,7 +203,7 @@ async function handleReserve(e) {
         const data = await response.json();
         if (data.success) {
             alert("Reservation Success! Your table has been secured in our cloud registry database.");
-            e.target.reset(); // Resets the form inputs cleanly
+            e.target.reset(); 
         }
     } catch (err) {
         console.error("Reservation network failed:", err);
@@ -224,14 +223,17 @@ async function triggerCheckout() {
         return;
     }
 
+    const email = prompt("Please enter your email to complete your secure checkout:") || "guest@example.com";
+
     const orderPayload = {
-        customerEmail: "guest@example.com", // You'll replace this with data from an input field later
+        customerEmail: email, 
         cartItems: cart,
         totalAmount: document.getElementById('totalVal').innerText
     };
 
     try {
-        const response = await fetch('https://bistro-haven.onrender.com/api/checkout', {
+        // Changed to localized relative router root path mapping
+        const response = await fetch('/api/checkout', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(orderPayload)

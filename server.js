@@ -74,7 +74,10 @@ const path = require('path');
 app.use(express.static(__dirname));
 
 // Direct any main browser visits straight to your index.html page
-app.get('(.*)', (req, res) => {
+// Direct any main browser visits straight to your index.html page cleanly
+app.get('*', (req, res, next) => {
+    // If the request is looking for an API door, don't serve index.html
+    if (req.path.startsWith('/api/')) return next();
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 // ==========================================

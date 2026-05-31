@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bistro Haven | Dine In or Delivered</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-utensils"></i>
+                Bistro<span>Haven</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#menu-section">Menu</a></li>
+                <li><a href="#membership">Membership</a></li>
+                <li><a href="#deliveries">Deliveries</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+            </ul>
+            <div class="nav-actions">
+                <div class="rewards-badge">
+                    <i class="fa-solid fa-crown"></i> Haven Rewards®
+                </div>
+                <div class="sign-in-btn">
+                    <i class="fa-regular fa-user"></i> Sign in
+                </div>
+                <button class="cart-trigger" id="cartToggleBtn">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+                <div class="hamburger" id="menuToggle">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-badge">
+            <i class="fa-solid fa-fire-flame-curved"></i> Over 23,000 Verified Local Diners
+        </div>
+        <h1>Great Food Awaits —<br><span>Dine In or Delivered</span></h1>
+        <p>Experience Michelin-grade culinary fusion crafted by master chefs, inside an unforgettable cozy sanctuary or delivered piping hot.</p>
+        
+        <div class="booking-container">
+            <div class="booking-tabs">
+                <div class="booking-tab active" id="tabInHaven">
+                    <i class="fa-solid fa-chair"></i> Book Table In-Haven
+                </div>
+                <div class="booking-tab" id="tabTracker">
+                    <i class="fa-solid fa-location-crosshairs"></i> Insta-Delivery Tracker
+                </div>
+            </div>
+            <form class="booking-form" id="bookingForm" onsubmit="handleReserve(event)">
+                <div class="form-group">
+                    <label>Guests</label>
+                    <select required>
+                        <option value="2">2 Guests</option>
+                        <option value="4">4 Guests</option>
+                        <option value="6">6 Guests</option>
+                        <option value="8">8+ Guests</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>When</label>
+                    <input type="date" value="2026-05-26" required>
+                </div>
+                <div class="form-group">
+                    <label>Time</label>
+                    <select required>
+                        <option value="19:00">7:00 PM</option>
+                        <option value="20:00">8:00 PM</option>
+                        <option value="21:00">9:00 PM</option>
+                    </select>
+                </div>
+                <button type="submit" class="book-btn">
+                    Book now <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </form>
+        </div>
+
+        <div class="hero-actions">
+            <a href="#menu-section" class="btn-secondary">Order Online Now &rarr;</a>
+            <a href="#menu-section" class="btn-outline"><i class="fa-solid fa-book-open"></i> Exotic Culinary Menu</a>
+        </div>
+    </section>
+
+    <section class="section-container" id="menu-section">
+        <div class="section-header">
+            <h2>Explore Popular Dishes</h2>
+            <p>Compare the highest-rated gourmet selections at Bistro Haven. Tailored with dietary preferences in mind.</p>
+        </div>
+
+        <div class="menu-filters">
+            <button class="filter-btn active" onclick="filterMenu('all', this)">All Selections (6)</button>
+            <button class="filter-btn" onclick="filterMenu('appetizer', this)">Appetizers</button>
+            <button class="filter-btn" onclick="filterMenu('main', this)">Mains</button>
+            <button class="filter-btn" onclick="filterMenu('dessert', this)">Desserts</button>
+        </div>
+
+        <div class="menu-grid" id="menuGrid">
+            <div class="menu-card" data-category="appetizer">
+                <div class="card-img-wrapper">
+                    <span class="card-badge"><i class="fa-solid fa-star"></i> Popular Item</span>
+                    <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&q=80&w=600" alt="Truffle Salad">
+                </div>
+                <div class="card-body">
+                    <div class="card-title-row">
+                        <h3>Truffle & Burrata Salad</h3>
+                        <span class="card-rating">4.90 <span class="rating-text">Exceptional</span></span>
+                    </div>
+                    <div class="card-tags">
+                        <span class="tag veg">Vegetarian</span>
+                        <span class="tag gf">Gluten-Free</span>
+                    </div>
+                    <p class="card-desc">Fresh artisanal burrata, heirloom tomatoes, wild rocket, shaved black truffle, and aged balsamic glaze.</p>
+                    <div class="card-footer">
+                        <span class="card-price">$15.99</span>
+                        <button class="add-to-cart-btn" onclick="addToCart('Truffle & Burrata Salad', 15.99)"><i class="fa-solid fa-cart-plus"></i> Add to Order</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="appetizer">
+                <div class="card-img-wrapper">
+                    <span class="card-badge"><i class="fa-solid fa-star"></i> Popular Item</span>
+                    <img src="https://images.unsplash.com/photo-1559742811-82410b451b9b?auto=format&fit=crop&q=80&w=600" alt="Shrimp">
+                </div>
+                <div class="card-body">
+                    <div class="card-title-row">
+                        <h3>Spicy Fire-Roasted Shrimp</h3>
+                        <span class="card-rating">4.80 <span class="rating-text">Wonderful</span></span>
+                    </div>
+                    <div class="card-tags">
+                        <span class="tag spicy">Spicy</span>
+                    </div>
+                    <p class="card-desc">Sautéed tiger prawns in a rich garlic infusion, fiery chili oil, lemon zest, and rustic herb dipping bread.</p>
+                    <div class="card-footer">
+                        <span class="card-price">$18.50</span>
+                        <button class="add-to-cart-btn" onclick="addToCart('Spicy Fire-Roasted Shrimp', 18.50)"><i class="fa-solid fa-cart-plus"></i> Add to Order</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="main">
+                <div class="card-img-wrapper">
+                    <span class="card-badge"><i class="fa-solid fa-star"></i> Popular Item</span>
+                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=600" alt="Ribeye">
+                </div>
+                <div class="card-body">
+                    <div class="card-title-row">
+                        <h3>Pan-Seared Wagyu Ribeye</h3>
+                        <span class="card-rating">4.95 <span class="rating-text">Exceptional</span></span>
+                    </div>
+                    <div class="card-tags">
+                        <span class="tag gf">Gluten-Free</span>
+                    </div>
+                    <p class="card-desc">Grade A5 premium ribeye served with roasted garlic baby potatoes, asparagus spears, and red wine reduction.</p>
+                    <div class="card-footer">
+                        <span class="card-price">$36.99</span>
+                        <button class="add-to-cart-btn" onclick="addToCart('Pan-Seared Wagyu Ribeye', 36.99)"><i class="fa-solid fa-cart-plus"></i> Add to Order</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="main">
+                <div class="card-img-wrapper">
+                    <span class="card-badge"><i class="fa-solid fa-star"></i> Popular Item</span>
+                    <img src="https://images.unsplash.com/photo-1476124369491-e7addf5db371?auto=format&fit=crop&q=80&w=600" alt="Risotto">
+                </div>
+                <div class="card-body">
+                    <div class="card-title-row">
+                        <h3>Wild Mushroom Truffle Risotto</h3>
+                        <span class="card-rating">4.70 <span class="rating-text">Wonderful</span></span>
+                    </div>
+                    <div class="card-tags">
+                        <span class="tag veg">Vegetarian</span>
+                        <span class="tag gf">Gluten-Free</span>
+                    </div>
+                    <p class="card-desc">Creamy Arborio rice slowly simmered with porcini, shiitake, parmigiano-reggiano, and white truffle oil essence.</p>
+                    <div class="card-footer">
+                        <span class="card-price">$24.50</span>
+                        <button class="add-to-cart-btn" onclick="addToCart('Wild Mushroom Truffle Risotto', 24.50)"><i class="fa-solid fa-cart-plus"></i> Add to Order</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="dessert">
+                <div class="card-img-wrapper">
+                    <span class="card-badge"><i class="fa-solid fa-star"></i> Popular Item</span>
+                    <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&q=80&w=600" alt="Souffle">
+                </div>
+                <div class="card-body">
+                    <div class="card-title-row">
+                        <h3>Warm Chocolate Lava Soufflé</h3>
+                        <span class="card-rating">4.85 <span class="rating-text">Exceptional</span></span>
+                    </div>
+                    <div class="card-tags">
+                        <span class="tag veg">Vegetarian</span>
+                    </div>
+                    <p class="card-desc">Decadent dark chocolate sponge with a liquid molten core, served with gourmet vanilla bean gelato and fresh berries.</p>
+                    <div class="card-footer">
+                        <span class="card-price">$11.99</span>
+                        <button class="add-to-cart-btn" onclick="addToCart('Warm Chocolate Lava Soufflé', 11.99)"><i class="fa-solid fa-cart-plus"></i> Add to Order</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="dessert">
+                <div class="card-img-wrapper">
+                    <span class="card-badge"><i class="fa-solid fa-star"></i> Popular Item</span>
+                    <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&q=80&w=600" alt="Panna Cotta">
+                </div>
+                <div class="card-body">
+                    <div class="card-title-row">
+                        <h3>Organic Matcha Berry Panna Cotta</h3>
+                        <span class="card-rating">4.60 <span class="rating-text">Very Good</span></span>
+                    </div>
+                    <div class="card-tags">
+                        <span class="tag veg">Vegetarian</span>
+                        <span class="tag gf">Gluten-Free</span>
+                    </div>
+                    <p class="card-desc">Silky coconut milk and ceremonial-grade stoneground matcha custard, topped with organic raspberry coulis.</p>
+                    <div class="card-footer">
+                        <span class="card-price">$10.50</span>
+                        <button class="add-to-cart-btn" onclick="addToCart('Organic Matcha Berry Panna Cotta', 10.50)"><i class="fa-solid fa-cart-plus"></i> Add to Order</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-container" id="membership">
+        <div class="membership-section">
+            <div class="membership-grid">
+                <div class="membership-content">
+                    <span class="m-badge"><i class="fa-solid fa-crown"></i> Haven Rewards® Program</span>
+                    <h2>Dining rewards<br><span>add up beautifully</span></h2>
+                    <p>Unlock a realm of exclusive culinary perks inspired directly by luxury travel models. Secure elite gold statuses, double stamp days, and free meals.</p>
+                    
+                    <ul class="membership-features">
+                        <li><i class="fa-solid fa-circle-check"></i> <strong>The 10-Stamp Rule:</strong> Order 10 premium meals, get 1 completely free.</li>
+                        <li><i class="fa-solid fa-circle-check"></i> <strong>Exclusive Chef's Specials:</strong> Get early reservation slots and access to private menu testing.</li>
+                    </ul>
+
+                    <form class="membership-form-inline" onsubmit="handleJoin(event)">
+                        <input type="email" placeholder="Enter your email to join free" required>
+                        <button type="submit">Join for free</button>
+                    </form>
+                </div>
+                <div class="membership-visual">
+                    <div class="stamp-card-container">
+                        <div class="stamp-card-header">
+                            <div>
+                                <h4 class="member-pass-label">Member Pass</h4>
+                                <h3 class="member-pass-title">Your Digital Stamp Card</h3>
+                            </div>
+                            <div class="member-pass-right">
+                                <span class="stamp-counter" id="stampCountText">3/10 Stamped</span>
+                                <div class="elite-status">Active Haven elite</div>
+                            </div>
+                        </div>
+                        <div class="stamp-grid">
+                            <div class="stamp-slot active"><i class="fa-solid fa-check"></i></div>
+                            <div class="stamp-slot active"><i class="fa-solid fa-check"></i></div>
+                            <div class="stamp-slot active"><i class="fa-solid fa-check"></i></div>
+                            <div class="stamp-slot">4</div>
+                            <div class="stamp-slot">5</div>
+                            <div class="stamp-slot">6</div>
+                            <div class="stamp-slot">7</div>
+                            <div class="stamp-slot">8</div>
+                            <div class="stamp-slot">9</div>
+                            <div class="stamp-slot"><i class="fa-solid fa-gift"></i></div>
+                        </div>
+                        <div class="stamp-card-footer">
+                            <i class="fa-solid fa-lightbulb"></i> Tap items to add to your order and watch your stamps update live!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-container" id="deliveries">
+        <div class="section-header">
+            <h2>Piping Hot, Always On-Time</h2>
+            <p>We deliver within a high-speed radius of 15 miles, keeping items sealed inside thermal induction bags.</p>
+        </div>
+
+        <div class="delivery-grid">
+            <div>
+                <div class="delivery-info-pane">
+                    <div class="metric-card">
+                        <i class="fa-solid fa-stopwatch"></i>
+                        <div>Speed Rating</div>
+                        <div>30-45 Mins</div>
+                    </div>
+                    <div class="metric-card">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                        <div>Minimum Order</div>
+                        <div>$12.00</div>
+                    </div>
+                    <div class="metric-card">
+                        <i class="fa-solid fa-truck-ramp-box"></i>
+                        <div>Flat Fee</div>
+                        <div>$2.99</div>
+                    </div>
+                </div>
+
+                <div class="tracker-card">
+                    <h3>Mock Order Tracking Hub</h3>
+                    <p>Insert any mock tracking code (e.g., <span class="code-highlight">BH-9821</span>) to trigger our delivery pipeline simulator.</p>
+                    <div class="tracker-field">
+                        <input type="text" id="trackInput" placeholder="Enter order no. or try BH-9821">
+                        <button onclick="simulateTracking()">Track order</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mock-map">
+                <div class="map-grid-overlay"></div>
+                <div class="radar-circle radar-1"></div>
+                <div class="radar-circle radar-2"></div>
+                <div class="map-pin">
+                    <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <div class="map-label">Downtown Center Location</div>
+                <div class="map-broadcast-banner" id="mapBanner">
+                    LATEST HUB BROADCAST: <br>
+                    <span id="pipelineStatus">Delivery pipeline is currently operating: Fast (30 min mean)</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="testimonials-bg" id="reviews">
+        <section class="section-container">
+            <div class="section-header">
+                <h5 class="review-sub">Verified Guest Opinion</h5>
+                <h2>What Guests Say About Us</h2>
+            </div>
+
+            <div class="testimonial-carousel">
+                <div class="testimonial-wrapper">
+                    <i class="fa-solid fa-quote-left quote-icon"></i>
+                    <div class="stars">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="testimonial-text" id="testimonialText">"The Truffle & Burrata salad is an absolute masterpiece. Bistro Haven represents the perfect marriage of casual, elegant hospitality and world-class fusion dining."</p>
+                    <div class="testimonial-author" id="testimonialAuthor">Sarah Jenkins</div>
+                    <div class="testimonial-role" id="testimonialRole">Food Critic, Culinary Chronicles</div>
+                </div>
+
+                <div class="carousel-controls">
+                    <button class="control-btn" onclick="prevTestimonial()"><i class="fa-solid fa-arrow-left"></i></button>
+                    <button class="control-btn" onclick="nextTestimonial()"><i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="#" class="logo">
+                    <i class="fa-solid fa-utensils"></i>
+                    Bistro<span>Haven</span>
+                </a>
+                <p>Bringing elite fusion dining experiences straight to your plate. Inspired by the meticulous service ideals of luxury hospitality models.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4 class="footer-heading">Navigation</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Home Hub</a></li>
+                    <li><a href="#menu-section">Culinary Menu</a></li>
+                    <li><a href="#membership">Rewards Pass</a></li>
+                    <li><a href="#deliveries">Fulfillment Map</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-heading">Opening Hours</h4>
+                <ul class="hours-list">
+                    <li><span>Monday – Thursday</span> <span class="highlight-hours">11:30 AM – 10:00 PM</span></li>
+                    <li><span>Friday – Saturday</span> <span class="highlight-hours late-night">11:30 AM – 11:30 PM</span></li>
+                    <li><span>Sunday Brunch</span> <span class="highlight-hours">10:00 AM – 9:00 PM</span></li>
+                </ul>
+            </div>
+            <div class="footer-newsletter">
+                <h4 class="footer-heading">Haven Chronicle</h4>
+                <p>Get seasonal secret menu discount codes emailed weekly.</p>
+                <div class="newsletter-field">
+                    <input type="email" placeholder="Your email address">
+                    <button onclick="alert('Thank you for subscribing to Haven Chronicle!')"><i class="fa-solid fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div>&copy; 2026 Bistro Haven Restaurant Group.</div>
+            <div class="footer-bottom-links">
+                <a href="#">Privacy Statement</a>
+                <a href="#">Terms of Use</a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h2>Your Selected Order</h2>
+            <button class="close-cart-btn" onclick="toggleCart()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="cart-items-container" id="cartItemsContainer">
+            <div class="empty-cart-view">
+                <i class="fa-solid fa-basket-shopping"></i>
+                <p>Your basket is empty.<br>Explore our popular dishes to add items.</p>
+            </div>
+        </div>
+        <div class="cart-footer-pane">
+            <div class="summary-row">
+                <span>Items Subtotal</span>
+                <span id="subtotalVal">$0.00</span>
+            </div>
+            <div class="summary-row">
+                <span>Estimated Packaging & Tax</span>
+                <span id="taxVal">$0.00</span>
+            </div>
+            <div class="summary-row total">
+                <span>Total Due</span>
+                <span id="totalVal">$0.00</span>
+            </div>
+            <button class="checkout-btn" onclick="triggerCheckout()">Proceed to Secure Checkout</button>
+        </div>
+    </div>
+
+    <div class="toast-notification" id="toast">
+        <i class="fa-solid fa-circle-check"></i> <span id="toastMessage">Item successfully registered!</span>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

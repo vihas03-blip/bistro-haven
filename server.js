@@ -7,7 +7,6 @@ app.use(cors()); // Allows your frontend website to talk to this backend
 app.use(express.json()); // Allows the server to read JSON data packets
 
 // 1. Connect directly to your MongoDB Atlas Cloud Database
-// Put your actual connection string between the quotes below!
 const MONGO_URI = "mongodb+srv://uththarisenadeera1_db_user:xrHAxUjdZIniujZY@cluster0.yplefwj.mongodb.net/?appName=Cluster0";
 
 mongoose.connect(MONGO_URI)
@@ -66,6 +65,19 @@ app.post('/api/reserve', async (req, res) => {
         res.status(500).json({ success: false, error: error.message });
     }
 });
+
+// ==========================================
+// NEW FRONTEND SERVING LINES ADDED HERE 👇
+// ==========================================
+// Serve static frontend files (html, css, js) from the current folder
+const path = require('path');
+app.use(express.static(__dirname));
+
+// Direct any main browser visits straight to your index.html page
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+// ==========================================
 
 // Start the server engine local link
 const PORT = 3000;

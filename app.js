@@ -183,9 +183,33 @@ function simulateTracking() {
     showToast("Tracking telemetry linked!");
 }
 
-function handleReserve(e) {
+async function handleReserve(e) {
     e.preventDefault();
-    alert("Reservation Success! A table reservation confirmation code has been dispatched via SMS notification.");
+    
+    // Grabbing data from your form input elements
+    const reservationPayload = {
+        guests: Number(document.getElementById('guestsInput')?.value) || 2, 
+        date: document.getElementById('dateInput')?.value || "Today",
+        time: document.getElementById('timeInput')?.value || "7:00 PM"
+    };
+
+    try {
+        // Updated to send reservation logs straight to your live cloud server!
+        const response = await fetch('https://bistro-haven.onrender.com/api/reserve', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(reservationPayload)
+        });
+
+        const data = await response.json();
+        if (data.success) {
+            alert("Reservation Success! Your table has been secured in our cloud registry database.");
+            e.target.reset(); // Resets the form inputs cleanly
+        }
+    } catch (err) {
+        console.error("Reservation network failed:", err);
+        alert("Could not transmit reservation payload.");
+    }
 }
 
 function handleJoin(e) {
@@ -207,7 +231,7 @@ async function triggerCheckout() {
     };
 
     try {
-        const response = await fetch('http://localhost:3000/api/checkout', {
+        const response = await fetch('https://bistro-haven.onrender.com/api/checkout', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(orderPayload)

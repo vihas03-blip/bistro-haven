@@ -74,7 +74,7 @@ const path = require('path');
 app.use(express.static(__dirname));
 
 // Direct any main browser visits straight to your index.html page
-app.get('*', (req, res) => {
+app.get('(.*)', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 // ==========================================

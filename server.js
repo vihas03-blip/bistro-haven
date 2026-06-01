@@ -7,8 +7,12 @@ app.use(cors()); // Allows your frontend website to talk to this backend
 app.use(express.json()); // Allows the server to read JSON data packets
 
 // 1. Connect directly to your MongoDB Atlas Cloud Database
-const MONGO_URI = "mongodb+srv://uththarisenadeera1_db_user:xrHAxUjdZIniujZY@cluster0.yplefwj.mongodb.net/?appName=Cluster0";
+const MONGO_URI = process.env.MONGO_URI;
 
+if (!MONGO_URI) {
+    console.error('Missing MONGO_URI environment variable');
+    process.exit(1);
+}
 mongoose.connect(MONGO_URI)
     .then(() => console.log("Database connected successfully!"))
     .catch(err => console.error("Database connection failed:", err));
@@ -75,13 +79,14 @@ app.use(express.static(__dirname));
 
 // Direct any main browser visits straight to your index.html page
 // Direct any main browser visits straight to your index.html page cleanly
-app.get('*', (req, res, next) => {
-    // If the request is looking for an API door, don't serve index.html
+app.get('/{*splat}', (req, res, next) => {
     if (req.path.startsWith('/api/')) return next();
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 // ==========================================
 
 // Start the server engine local link
-const PORT = 3000;
-app.listen(PORT, () => console.log(`Backend server running on http://localhost:${PORT}`));
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Backend server running on port ${PORT}`);
+});

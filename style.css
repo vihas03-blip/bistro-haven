@@ -1282,6 +1282,118 @@ footer {
     gap:16px;
 }
 
+/* --- sign in btn ---*/
+.sign-in-btn {
+    background: none;
+    border: none;
+    font-family: inherit;
+}
+
+.auth-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.58);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    z-index: 3000;
+}
+
+.auth-modal-overlay.open {
+    display: flex;
+}
+
+.auth-modal {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 32px;
+    box-shadow: 0 24px 70px rgba(15, 23, 42, 0.28);
+}
+
+.auth-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background: #f8fafc;
+    cursor: pointer;
+    color: #0f172a;
+}
+
+.auth-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #fff1f2;
+    color: var(--accent-red);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
+    font-size: 20px;
+}
+
+.auth-modal h2 {
+    font-size: 26px;
+    margin-bottom: 8px;
+    color: var(--text-main);
+}
+
+.auth-modal p {
+    color: var(--text-muted);
+    margin-bottom: 22px;
+    line-height: 1.5;
+}
+
+.auth-form {
+    display: grid;
+    gap: 14px;
+}
+
+.auth-form label {
+    display: grid;
+    gap: 7px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.auth-form input {
+    width: 100%;
+    padding: 13px 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    font: inherit;
+}
+
+.auth-form input:focus {
+    outline: none;
+    border-color: var(--accent-red);
+    box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.12);
+}
+
+.auth-form button {
+    margin-top: 8px;
+    border: none;
+    border-radius: 10px;
+    background: var(--accent-red);
+    color: #ffffff;
+    padding: 14px 18px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.auth-form button:hover {
+    background: var(--accent-red-hover);
+}
+
 /* --- Responsive Media Viewport Breaks --- */
 @media (max-width: 1024px) {
     .membership-grid { grid-template-columns: 1fr; }

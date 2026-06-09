@@ -111,6 +111,66 @@ function renderCart() {
     document.getElementById('totalVal').innerText = `$${totalCombined.toFixed(2)}`;
 }
 
+// --- sign in form ---
+const signInBtn = document.getElementById('signInBtn');
+const signInText = document.getElementById('signInText');
+const authModal = document.getElementById('authModal');
+const authCloseBtn = document.getElementById('authCloseBtn');
+const customerForm = document.getElementById('customerForm');
+
+function openAuthModal() {
+    authModal.classList.add('open');
+    authModal.setAttribute('aria-hidden', 'false');
+    document.getElementById('customerName').focus();
+}
+
+function closeAuthModal() {
+    authModal.classList.remove('open');
+    authModal.setAttribute('aria-hidden', 'true');
+}
+
+signInBtn.addEventListener('click', openAuthModal);
+authCloseBtn.addEventListener('click', closeAuthModal);
+
+authModal.addEventListener('click', (e) => {
+    if (e.target === authModal) closeAuthModal();
+});
+
+customerForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const customerPayload = {
+        name: document.getElementById('customerName').value.trim(),
+        email: document.getElementById('customerEmail').value.trim().toLowerCase(),
+        phone: document.getElementById('customerPhone').value.trim()
+    };
+
+    try {
+        const response = await fetch('/api/customers', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(customerPayload)
+        });
+
+        const data = await response.json();
+
+        if (!data.success) {
+            alert(data.message || 'Could not save customer.');
+            return;
+        }
+
+        localStorage.setItem('bistroCustomer', JSON.stringify(data.customer));
+        signInText.innerText = data.customer.name.split(' ')[0];
+
+        customerForm.reset();
+        closeAuthModal();
+        showToast(`Welcome, ${data.customer.name.split(' ')[0]}!`);
+    } catch (err) {
+        console.error('Customer sign in failed:', err);
+        alert('Could not sign in right now.');
+    }
+});
+
 // --- Loyalty Pass Card Stamp Renderer ---
 function updateStampUI() {
     const slots = document.querySelectorAll('.stamp-slot');

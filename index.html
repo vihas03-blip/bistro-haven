@@ -29,9 +29,12 @@
                 <div class="rewards-badge">
                     <i class="fa-solid fa-crown"></i> Haven Rewards®
                 </div>
-                <div class="sign-in-btn">
-                    <i class="fa-regular fa-user"></i> Sign in
-                </div>
+
+                <button class="sign-in-btn" id="signInBtn" type="button">
+                <i class="fa-regular fa-user"></i>
+                <span id="signInText">Sign in</span>
+                </button>
+            
                 <button class="cart-trigger" id="cartToggleBtn">
                     <i class="fa-solid fa-bag-shopping"></i>
                     <span class="cart-count" id="cartCount">0</span>
@@ -450,6 +453,40 @@
 
     <div class="toast-notification" id="toast">
         <i class="fa-solid fa-circle-check"></i> <span id="toastMessage">Item successfully registered!</span>
+    </div>
+
+    <div class="auth-modal-overlay" id="authModal" aria-hidden="true">
+        <div class="auth-modal">
+            <button class="auth-close" id="authCloseBtn" type="button">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="auth-icon">
+                <i class="fa-regular fa-user"></i>
+            </div>
+
+            <h2>Sign in to Bistro Haven</h2>
+            <p>Save your reservations, orders, and rewards profile.</p>
+
+            <form class="auth-form" id="customerForm">
+                <label>
+                    Full name
+                    <input type="text" id="customerName" placeholder="Enter your name" required>
+                </label>
+
+                <label>
+                    Email address
+                    <input type="email" id="customerEmail" placeholder="you@example.com" required>
+                </label>
+
+                <label>
+                    Phone number
+                    <input type="tel" id="customerPhone" placeholder="Your phone number" required>
+                </label>
+
+                <button type="submit" id="customerSubmitBtn">Sign in</button>
+            </form>
+        </div>
     </div>
 
     <script src="app.js"></script>

@@ -31,6 +31,16 @@ const ReservationSchema = new mongoose.Schema({
     time: String,
     createdAt: { type: Date, default: Date.now }
 });
+// for sign in form
+const CustomerSchema = new mongoose.Schema({
+    name: String,
+    email: String,
+    phone: String,
+    createdAt: { type: Date, default: Date.now },
+    updatedAt: { type: Date, default: Date.now }
+});
+
+const Customer = mongoose.model('Customer', CustomerSchema);
 
 // Create models based on blueprints
 const Order = mongoose.model('Order', OrderSchema);
@@ -70,6 +80,46 @@ app.post('/api/reserve', async (req, res) => {
     }
 });
 
+app.post('/api/customers', async (req, res) => {
+    try {
+        const name = req.body.name?.trim();
+        const email = req.body.email?.trim().toLowerCase();
+        const phone = req.body.phone?.trim();
+
+        if (!name || !email || !phone) {
+            return res.status(400).json({
+                success: false,
+                message: 'Name, email, and phone are required.'
+            });
+        }
+
+        const customer = await Customer.findOneAndUpdate(
+            { email },
+            {
+                name,
+                email,
+                phone,
+                updatedAt: new Date()
+            },
+            {
+                new: true,
+                upsert: true,
+                setDefaultsOnInsert: true
+            }
+        );
+
+        res.status(201).json({
+            success: true,
+            message: 'Customer saved successfully!',
+            customer
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            error: error.message
+        });
+    }
+});
 // ==========================================
 // NEW FRONTEND SERVING LINES ADDED HERE 👇
 // ==========================================

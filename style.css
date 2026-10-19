@@ -1404,11 +1404,58 @@ footer {
 @media (max-width: 768px) {
     .nav-links, .nav-actions .rewards-badge, .nav-actions .sign-in-btn { display: none; }
     .hamburger { display: block; }
-    .hero h1 { font-size: 34px; }
+
+    /* Hero */
+    .hero { padding: 60px 16px 80px 16px; }
+    .hero h1 { font-size: 30px; letter-spacing: -0.5px; }
+    .hero p { font-size: 15px; }
+    .hero-actions { flex-direction: column; align-items: center; }
+
+    /* Booking form */
     .booking-form { grid-template-columns: 1fr; }
     .book-btn { width: 100%; justify-content: center; }
+
+    /* Section spacing */
+    .section-container { padding: 50px 16px; }
+    .section-header h2 { font-size: 26px; }
+
+    /* Menu grid - single column on mobile */
+    .menu-grid { grid-template-columns: 1fr; }
+    .menu-filters { flex-wrap: wrap; gap: 8px; }
+
+    /* Membership section */
+    .membership-grid { grid-template-columns: 1fr; }
+    .membership-visual { display: none; }
+    .membership-content { padding: 32px 20px; }
+    .membership-content h2 { font-size: 28px; }
+    .membership-features li { 
+        display: grid; 
+        grid-template-columns: auto 1fr;
+        gap: 8px;
+        word-break: break-word;
+    }
+    .membership-form-inline { 
+        flex-direction: column; 
+        gap: 10px; 
+    }
+    .membership-form-inline button { 
+        width: 100%; 
+        padding: 14px; 
+    }
+
+    /* Delivery section */
     .delivery-grid { grid-template-columns: 1fr; }
+    .delivery-info-pane { grid-template-columns: 1fr 1fr; }
+
+    /* Footer */
     .footer-grid { grid-template-columns: 1fr; }
     .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+    .footer-bottom-links { justify-content: center; flex-wrap: wrap; }
+    footer { padding: 40px 16px 24px; }
+
+    /* Cart sidebar */
     .cart-sidebar { width: 100%; right: -100%; }
+
+    /* Toast */
+    .toast-notification { left: 16px; right: 16px; }
 }

@@ -1407,7 +1407,7 @@ footer {
 
     /* Hero */
     .hero { padding: 60px 16px 80px 16px; }
-    .hero h1 { font-size: 30px; letter-spacing: -0.5px; }
+    .hero h1 { font-size: 28px; letter-spacing: -0.5px; }
     .hero p { font-size: 15px; }
     .hero-actions { flex-direction: column; align-items: center; }
 
@@ -1416,31 +1416,51 @@ footer {
     .book-btn { width: 100%; justify-content: center; }
 
     /* Section spacing */
-    .section-container { padding: 50px 16px; }
-    .section-header h2 { font-size: 26px; }
+    .section-container { padding: 40px 16px; }
+    .section-header h2 { font-size: 24px; }
 
     /* Menu grid - single column on mobile */
     .menu-grid { grid-template-columns: 1fr; }
     .menu-filters { flex-wrap: wrap; gap: 8px; }
 
-    /* Membership section */
+    /* Membership section - key fix */
+    .membership-section { border-radius: 12px; overflow: visible; }
     .membership-grid { grid-template-columns: 1fr; }
     .membership-visual { display: none; }
-    .membership-content { padding: 32px 20px; }
-    .membership-content h2 { font-size: 28px; }
-    .membership-features li { 
-        display: grid; 
-        grid-template-columns: auto 1fr;
-        gap: 8px;
+    .membership-content { padding: 28px 16px; overflow: hidden; }
+    .membership-content h2 { font-size: 24px; word-break: break-word; }
+    .membership-features { padding: 0; }
+    .membership-features li {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+        margin-bottom: 16px;
+        font-size: 14px;
+        color: #cbd5e1;
+        word-break: break-word;
+        overflow-wrap: break-word;
+        width: 100%;
+    }
+    .membership-features li i {
+        margin-top: 0;
+        flex-shrink: 0;
+    }
+    .membership-features li strong {
+        display: inline;
         word-break: break-word;
     }
-    .membership-form-inline { 
-        flex-direction: column; 
-        gap: 10px; 
+    .membership-form-inline {
+        flex-direction: column;
+        gap: 10px;
+        max-width: 100%;
     }
-    .membership-form-inline button { 
-        width: 100%; 
-        padding: 14px; 
+    .membership-form-inline input {
+        width: 100%;
+    }
+    .membership-form-inline button {
+        width: 100%;
+        padding: 14px;
     }
 
     /* Delivery section */
